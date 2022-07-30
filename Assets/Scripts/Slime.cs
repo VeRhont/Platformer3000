@@ -4,6 +4,7 @@ public class Slime : Enemy
 {
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speed;
+    [SerializeField] private float _damage;
 
     [SerializeField] private ContactFilter2D _ground;
 
@@ -16,9 +17,11 @@ public class Slime : Enemy
         ChasePlayer();
     }
 
-    private void Jump()
+    private void MoveToPlayer()
     {
         _enemyAnimator.SetBool("IsMoving", true);
+
+        LookAtPlayer();
 
         if (_isOnGround)
         {
@@ -30,9 +33,22 @@ public class Slime : Enemy
     {
         if (_player == null) return;
 
-        _enemyRb.AddForce(Vector2.left * _speed);
+        MoveToPlayer();
+    }
 
-        Jump();
+    private void LookAtPlayer()
+    {
+        var scaleX = _player.transform.position.x > transform.position.x ? -1 : 1;
+
+        transform.localScale = new Vector3(scaleX, 1, 1);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(_damage);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -40,6 +56,8 @@ public class Slime : Enemy
         if (collision.gameObject.CompareTag("Player"))
         {
             _player = collision.gameObject;
+
+            LookAtPlayer();
         }
     }
 
@@ -48,6 +66,7 @@ public class Slime : Enemy
         if (collision.gameObject.CompareTag("Player"))
         {
             _player = null;
+
             _enemyAnimator.SetBool("IsMoving", false);
         }
     }

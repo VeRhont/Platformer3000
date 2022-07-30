@@ -4,7 +4,6 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy's stats")]
     [SerializeField] private float _maxHealth;
-    [SerializeField] private float _damage;
     private float _health;
 
     protected Rigidbody2D _enemyRb;
@@ -35,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log(name + "is dead");
+        Debug.Log(name + " is dead");
         Destroy(gameObject);
     }
 

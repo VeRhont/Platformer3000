@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Stats")]
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
+
+    [Header("Health")]
+    [SerializeField] private Image _healthBar;
     [SerializeField] private float _maxHealth;
     private float _health;
 
@@ -35,14 +39,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _health = _maxHealth;
+        UpdateHealth();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isOnGround)
-        {
             Jump();
-        }
 
         if (Time.time >= _nextAttackTime)
         {
@@ -58,24 +61,28 @@ public class PlayerController : MonoBehaviour
                 _nextAttackTime = Time.time + 1f / _attackRate;
             }
         }
-        
+
+        if (Input.GetButton("Horizontal"))
+            Run();
+        else
+            _playerAnimator.SetBool("IsMoving", false);
     }
 
-    private void FixedUpdate()
+    private void Run()
     {
-        var movement = Input.GetAxis("Horizontal");
+        var horizontalDirection = transform.right * Input.GetAxis("Horizontal");
 
-        _playerAnimator.SetBool("IsMoving", movement != 0.0f);
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + horizontalDirection, _speed * Time.deltaTime);
 
-        var xScale = _playerRb.velocity.x >= 0 ? 1 : -1;
-        transform.localScale = new Vector3(xScale, 1, 1);        
+        transform.localScale = new Vector3((horizontalDirection.x >= 0f ? 1f : -1f), 1f, 1f);
 
-        _playerRb.AddForce(Vector2.right * _speed * movement);
+        _playerAnimator.SetBool("IsMoving", horizontalDirection.x != 0.0f);
     }
 
     private void Jump()
     {
         _playerAnimator.SetTrigger("Jump");
+
         _playerRb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
 
@@ -117,12 +124,19 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealth()
     {
+        if (_health == 0)
+            Die();
 
+        _healthBar.fillAmount = _health / _maxHealth;
     }
 
-    private void TakeDamage()
+    public void TakeDamage(float damage)
     {
         _playerAnimator.SetTrigger("Damage");
+
+        _health = Mathf.Max(0, _health - damage);
+
+        UpdateHealth();
     }
 
     private void Die()
