@@ -294,5 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2995cef7a8051fc45a331e6ad3d11255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropObjects: []
+  _dropObjects:
+  - {fileID: 6266493697748339779, guid: 3dfe83559b78d1f4c909b1a5158d855e, type: 3}
   _pressR: {fileID: 0}
+  _openedChest: {fileID: 5401976606335695262}

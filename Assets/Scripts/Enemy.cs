@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _enemyRb = GetComponent<Rigidbody2D>();
-        _enemyAnimator = GetComponent<Animator>();
+
+        _enemyAnimator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
             Die();
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Debug.Log(name + " is dead");
         Destroy(gameObject);

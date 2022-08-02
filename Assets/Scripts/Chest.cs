@@ -1,11 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
 
 public class Chest : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _dropObjects;
+    [SerializeField] private List<GameObject> _dropObjects;
     [SerializeField] private TextMeshProUGUI _pressR;
-
+    [SerializeField] private GameObject _openedChest;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -15,14 +16,7 @@ public class Chest : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                foreach (var obj in _dropObjects)
-                {
-                    Instantiate(obj);
-                }
-
-                _pressR.gameObject.SetActive(false);
-
-                Destroy(this);
+                OpenChest();
             }
         }
     }
@@ -30,5 +24,19 @@ public class Chest : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _pressR.gameObject.SetActive(false);
+    }
+
+    private void OpenChest()
+    {
+        _openedChest.SetActive(true);
+
+        foreach (var obj in _dropObjects)
+        {
+            Instantiate(obj, transform.position, Quaternion.identity);
+        }
+
+        _pressR.gameObject.SetActive(false);
+
+        Destroy(this);
     }
 }

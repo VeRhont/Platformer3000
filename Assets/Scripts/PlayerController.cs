@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Stats")]
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
+    public float JumpForce
+    {
+        get { return _jumpForce; }
+        set { _jumpForce = value; }
+    }
 
     [Header("Health")]
     [SerializeField] private Image _healthBar;
@@ -139,8 +145,15 @@ public class PlayerController : MonoBehaviour
         UpdateHealth();
     }
 
+    public void Heal(float hp)
+    {
+        _health = Mathf.Min(100f, _health + hp);
+        UpdateHealth();
+    }
+
     private void Die()
     {
         _playerAnimator.SetBool("IsDead", true);
+        SceneManager.LoadScene(0);
     }
 }
