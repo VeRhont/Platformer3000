@@ -108,7 +108,12 @@ public class PlayerController : MonoBehaviour
     public void OnThrowKnife()
     {
         var index = Random.Range(0, _knifePrefabs.Length);
-        Instantiate(_knifePrefabs[index], _throwKnifePosition.position, Quaternion.identity);
+        var knife = Instantiate(_knifePrefabs[index], _throwKnifePosition.position, Quaternion.identity);
+
+        if (transform.localScale.x == -1)
+        {
+            knife.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
     }
 
     private void Attack()

@@ -6,12 +6,12 @@ public class Knife : MonoBehaviour
     [SerializeField, Range(1, 10)] private float _lifeTime;
     [SerializeField] private float _damage;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_lifeTime <= 0)
             Destroy(gameObject);
 
-        transform.Translate(Vector2.right * _speed * Time.deltaTime);
+        transform.position += transform.right * _speed * Time.deltaTime;
 
         _lifeTime -= Time.deltaTime;
     }
@@ -21,6 +21,7 @@ public class Knife : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
+            Destroy(gameObject);
         }
     }
 }
