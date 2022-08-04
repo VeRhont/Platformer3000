@@ -7,12 +7,14 @@ public class Chest : MonoBehaviour
     [SerializeField] private List<GameObject> _dropObjects;
     [SerializeField] private TextMeshProUGUI _pressR;
     [SerializeField] private GameObject _openedChest;
+    [SerializeField] private GameObject _halo;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             _pressR.gameObject.SetActive(true);
+            _halo.gameObject.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -24,10 +26,12 @@ public class Chest : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _pressR.gameObject.SetActive(false);
+        _halo.gameObject.SetActive(false);
     }
 
     private void OpenChest()
     {
+        _halo.gameObject.SetActive(false);
         _openedChest.SetActive(true);
 
         foreach (var obj in _dropObjects)

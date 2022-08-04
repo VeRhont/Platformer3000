@@ -25,21 +25,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _nextAttackTime = 0f;
     [SerializeField] private Transform _attackPosition;
     [SerializeField] private LayerMask _enemyLayers;
-
     [SerializeField] private GameObject[] _knifePrefabs;
     [SerializeField] private Transform _throwKnifePosition;
+
+    [Header("Inventory")]
+    [SerializeField] private InventoryUI _uiInventory;
+    private Inventory _inventory;
 
     [Header("Components")]
     private Animator _playerAnimator;
     private Rigidbody2D _playerRb;
 
     [SerializeField] private ContactFilter2D _ground;
-    private bool _isOnGround => _playerRb.IsTouching(_ground);
+    private bool IsOnGround => _playerRb.IsTouching(_ground);
 
     private void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
+
+        _inventory = new Inventory();
+        _uiInventory.SetInventory(_inventory);
     }
 
     private void Start()
@@ -50,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && IsOnGround)
             Jump();
 
         if (Time.time >= _nextAttackTime)

@@ -5,8 +5,8 @@ public class Skeleton : Enemy
     [Header("Attack")]
     [SerializeField] private float _attackDamage;
     [SerializeField] private float _attackRange = 0.5f;
-    [SerializeField] private float _attackRate = 2f;
-    [SerializeField] private float _nextAttackTime = 0f;
+    [SerializeField] private float _timeBetweenAttack = 2f;
+    [SerializeField] private float _timeToNextAttack = 0f;
     [SerializeField] private Transform _attackPosition;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _attackDistance;
@@ -23,14 +23,16 @@ public class Skeleton : Enemy
 
         if (Mathf.Abs(transform.position.x - _player.transform.position.x) < _attackDistance)
         {
-            if (Time.time >= _nextAttackTime)
+            if (_timeToNextAttack <= 0)
             {
                 Attack();
-                _nextAttackTime = Time.time + 1f / _attackRate;
+                _timeToNextAttack = _timeBetweenAttack;
             }
         }
 
         RunToPlayer();
+
+        _timeToNextAttack -= Time.deltaTime;
     }
 
     private void RunToPlayer()

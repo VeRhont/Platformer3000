@@ -273,6 +273,8 @@ MonoBehaviour:
   _jumpForce: 2
   _speed: 1.5
   _damage: 10
+  _attackDistance: 0.5
+  _timeToNextAttack: 1
   _ground:
     useTriggers: 0
     useLayerMask: 0

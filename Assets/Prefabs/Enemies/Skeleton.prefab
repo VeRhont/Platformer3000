@@ -324,10 +324,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
-  _attackDamage: 1
+  _attackDamage: 25
   _attackRange: 0.7
-  _attackRate: 2
-  _nextAttackTime: 0
+  _timeBetweenAttack: 2
+  _timeToNextAttack: 0
   _attackPosition: {fileID: 974298347}
   _playerLayer:
     serializedVersion: 2
