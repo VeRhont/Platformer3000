@@ -1,10 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JumpPotion : MonoBehaviour
 {
+    [SerializeField] private Image _image;
     [SerializeField] private float _jumpForceIncreasing;
     [SerializeField] private float _duration;
+
+    private void Update()
+    {
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

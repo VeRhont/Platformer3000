@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
-    [SerializeField, Range(1, 10)] private float _speed;
+    [SerializeField, Range(1, 20)] private float _speed;
     [SerializeField, Range(1, 10)] private float _lifeTime;
     [SerializeField] private float _damage;
 

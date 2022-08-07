@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    static public PlayerController Instance;
+
     [Header("Player Stats")]
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -28,6 +30,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject[] _knifePrefabs;
     [SerializeField] private Transform _throwKnifePosition;
 
+    [Header("Shield")]
+    [SerializeField] private float _maxShieldDuration;
+    [SerializeField] private float _maxCooldown;
+    [SerializeField] private Image _useShieldImage;
+    [SerializeField] private GameObject _shield;
+    private float _shieldDuration;
+    private float _cooldown;
+    private bool _isShieldActive = false;
+
     [Header("Inventory")]
     [SerializeField] private InventoryUI _uiInventory;
     private Inventory _inventory;
@@ -41,6 +52,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Debug.LogError("More than one player");
+
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
 
@@ -51,6 +67,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _health = _maxHealth;
+        _cooldown = _maxCooldown;
+
         UpdateHealth();
     }
 
@@ -78,6 +96,44 @@ public class PlayerController : MonoBehaviour
             Run();
         else
             _playerAnimator.SetBool("IsMoving", false);
+
+        if (Input.GetKeyDown(KeyCode.Q) && _cooldown >= _maxCooldown)
+        {
+            UseShield();
+        }
+
+        UpdateShield();
+    }
+
+    private void UseShield()
+    {
+        _isShieldActive = true;
+        _shield.SetActive(true);
+
+        _shieldDuration = _maxShieldDuration;
+
+        _cooldown = 0;
+    }
+
+    private void UpdateShield()
+    {
+        // reloading
+        if (_cooldown < _maxCooldown)
+        {
+            _cooldown = Mathf.Min(_cooldown + Time.deltaTime, _maxCooldown);
+            _useShieldImage.fillAmount = _cooldown / _maxCooldown;
+        }
+
+        if (_isShieldActive)
+        {
+            _shieldDuration = Mathf.Max(0, _shieldDuration - Time.deltaTime);
+
+            if (_shieldDuration == 0)
+            {
+                _isShieldActive = false;
+                _shield.SetActive(false);
+            }
+        }
     }
 
     private void Run()
@@ -149,11 +205,14 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        _playerAnimator.SetTrigger("Damage");
+        if (_isShieldActive == false)
+        {
+            _playerAnimator.SetTrigger("Damage");
 
-        _health = Mathf.Max(0, _health - damage);
+            _health = Mathf.Max(0, _health - damage);
 
-        UpdateHealth();
+            UpdateHealth();
+        }
     }
 
     public void Heal(float hp)
@@ -165,6 +224,6 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         _playerAnimator.SetBool("IsDead", true);
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 }

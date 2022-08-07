@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 1756969048909690268}
   m_Layer: 0
   m_Name: Plant
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 1756969049426316251}
   - component: {fileID: 1756971654}
   - component: {fileID: 1756971655}
+  - component: {fileID: 7463437471244254444}
   m_Layer: 7
   m_Name: ShootingPlant
   m_TagString: Enemy
@@ -356,6 +357,27 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011817932, y: 0.08417928}
-  m_Size: {x: 0.9397125, y: 1.1683586}
+  m_Offset: {x: 0.011817933, y: 0.08417929}
+  m_Size: {x: 1.259626, y: 1.2596262}
   m_Direction: 0
+--- !u!50 &7463437471244254444
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756969049426316250}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
