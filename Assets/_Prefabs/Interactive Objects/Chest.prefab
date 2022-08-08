@@ -340,7 +340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropObjects:
-  - {fileID: 1730934087563602717, guid: d5c3cdb99e9ed5e47b770b29c1c0c825, type: 3}
-  _pressR: {fileID: 0}
+  - {fileID: 6266493697748339779, guid: 3dfe83559b78d1f4c909b1a5158d855e, type: 3}
+  _pressR: {fileID: 2690042653514498822, guid: efacea0ed17bd55488a28aef8de8685f, type: 3}
   _openedChest: {fileID: 5401976606335695262}
-  _halo: {fileID: 556447697}

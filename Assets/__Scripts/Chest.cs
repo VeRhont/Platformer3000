@@ -5,17 +5,24 @@ using TMPro;
 public class Chest : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _dropObjects;
-    [SerializeField] private TextMeshProUGUI _pressR;
+    [SerializeField] private TextMeshProUGUI _hint;
     [SerializeField] private GameObject _openedChest;
-    [SerializeField] private GameObject _halo;
+
+    private bool _isActive = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _pressR.gameObject.SetActive(true);
-            _halo.gameObject.SetActive(true);
+            _isActive = true;
+            _hint.gameObject.SetActive(true);
+        }
+    }
 
+    private void Update()
+    {
+        if (_isActive)
+        {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 OpenChest();
@@ -25,21 +32,21 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _pressR.gameObject.SetActive(false);
-        _halo.gameObject.SetActive(false);
+        _isActive = false;
+        _hint.gameObject.SetActive(false);
     }
 
     private void OpenChest()
     {
-        _halo.gameObject.SetActive(false);
         _openedChest.SetActive(true);
 
         foreach (var obj in _dropObjects)
         {
-            Instantiate(obj, transform.position, Quaternion.identity);
+            var dropObject = Instantiate(obj, transform.position, Quaternion.identity);
+            dropObject.transform.position += new Vector3(Random.value, Random.value, dropObject.transform.position.z);
         }
 
-        _pressR.gameObject.SetActive(false);
+        _hint.gameObject.SetActive(false);
 
         Destroy(this);
     }

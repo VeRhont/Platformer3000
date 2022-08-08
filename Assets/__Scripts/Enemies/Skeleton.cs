@@ -10,6 +10,7 @@ public class Skeleton : Enemy
     [SerializeField] private Transform _attackPosition;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _attackDistance;
+    [SerializeField] private float _deltaX = 0.5f;
 
     private GameObject _player;
 
@@ -38,7 +39,7 @@ public class Skeleton : Enemy
     private void RunToPlayer()
     {
         _enemyAnimator.SetBool("IsMoving", true);
-        if (_player.transform.position.x > transform.position.x)
+        if (_player.transform.position.x + _deltaX > transform.position.x)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
