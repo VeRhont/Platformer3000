@@ -48,7 +48,8 @@ public class Skeleton : Enemy
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        var direction =  _player.transform.position - transform.position;
+        var deltaX =  _player.transform.position.x - transform.position.x;
+        var direction = new Vector3(deltaX, 0, 0);
 
         _enemyRb.MovePosition(transform.position + direction * Time.deltaTime);
     }

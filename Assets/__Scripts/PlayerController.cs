@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _jumpPressedRememberTime = 0.1f;
+    [SerializeField] private float _jumpGroundedRememberTime = 0.1f;
+    [SerializeField, Range(0, 1)] private float _cutJumpHeight;
+    private float _jumpPressedRemember = 0f;
+    private float _jumpGroundedRemember = 0f;
+
     public float JumpForce
     {
         get { return _jumpForce; }
@@ -74,8 +80,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsOnGround)
+        _jumpGroundedRemember -= Time.deltaTime;
+        if (IsOnGround)
+        {
+            _jumpGroundedRemember = _jumpGroundedRememberTime;
+        }
+
+        _jumpPressedRemember -= Time.deltaTime;
+        if (Input.GetButtonDown("Jump"))
+        {
+            _jumpPressedRemember = _jumpPressedRememberTime;
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            if (_playerRb.velocity.y > 0)
+            {
+                _playerRb.velocity = new Vector2(_playerRb.velocity.x, _playerRb.velocity.y * _cutJumpHeight);
+            }
+        }
+
+        if ((_jumpPressedRemember > 0) && (_jumpGroundedRemember > 0))
+        {
+            _jumpPressedRemember = 0;
+            _jumpGroundedRemember = 0;
             Jump();
+        }
 
         if (Time.time >= _nextAttackTime)
         {
