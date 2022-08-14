@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6266493697748339781}
   - component: {fileID: 6266493697748339778}
-  - component: {fileID: 2144935058874068357}
   - component: {fileID: 4365542130071886907}
+  - component: {fileID: 584978194}
   m_Layer: 0
   m_Name: Jump Potion
   m_TagString: Untagged
@@ -86,20 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2144935058874068357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6266493697748339779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f0ab6f05ac04343b8cec458fa0eb66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jumpForceIncreasing: 15
-  _duration: 10
 --- !u!58 &4365542130071886907
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,3 +102,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4375
+--- !u!114 &584978194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266493697748339779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a46aa72e009af4da56be929ebfccef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlotButton: {fileID: 7601321563234648627, guid: 9adc3eaacdee55243be956d7c044b24a, type: 3}

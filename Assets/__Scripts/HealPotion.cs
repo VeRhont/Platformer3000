@@ -5,13 +5,11 @@ public class HealPotion : MonoBehaviour
 {
     [SerializeField] private float _heal;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void UseHealPotion()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerController>().Heal(_heal);
+        var player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerController>().Heal(_heal);
 
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

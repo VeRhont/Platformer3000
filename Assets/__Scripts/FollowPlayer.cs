@@ -22,14 +22,14 @@ public class FollowPlayer : MonoBehaviour
 
     private void LateUpdate()
     { 
-        if (Mathf.Abs(_playerRb.velocity.x) >= _changeVelocity)
+        if (Mathf.Abs(_playerRb.velocity.y) >= _changeVelocity) // here
         {
             _offset.y = Mathf.Min(4, _offset.y + _deltaOffsetY);
             _camera.orthographicSize = Mathf.Min(_maxSize, _camera.orthographicSize + _deltaOffsetSize);
         }
         else
         {
-            _offset.y = Mathf.Max(3, _offset.y - _deltaOffsetY);
+            _offset.y = Mathf.Max(2.5f, _offset.y - _deltaOffsetY);
             _camera.orthographicSize = Mathf.Max(5, _camera.orthographicSize - _deltaOffsetSize);
         }
 

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1730934087563602712}
   - component: {fileID: 1730934087563602719}
-  - component: {fileID: 1730934087563602718}
   - component: {fileID: 1730934087563602713}
+  - component: {fileID: 1077669583}
   m_Layer: 0
   m_Name: Heal Potion
   m_TagString: Untagged
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1730934087563602718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730934087563602717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d8b9c21fb80cca43a643af59ac7fb80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _heal: 20
 --- !u!58 &1730934087563602713
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,3 +102,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4375
+--- !u!114 &1077669583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730934087563602717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a46aa72e009af4da56be929ebfccef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlotButton: {fileID: 5717117652771725027, guid: 002011d0740c7844eb0a183407c976ef, type: 3}

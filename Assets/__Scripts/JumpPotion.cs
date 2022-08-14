@@ -4,37 +4,18 @@ using UnityEngine.UI;
 
 public class JumpPotion : MonoBehaviour
 {
-    [SerializeField] private Image _image;
-    [SerializeField] private float _jumpForceIncreasing;
+    [SerializeField] private float _addingJumpForce;
     [SerializeField] private float _duration;
 
-    private void Update()
+    private PlayerController _player;
+    private float _startTime;
+
+    public void UseJumpPotion()
     {
-        
-    }
+        _startTime = Time.time;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            var player = collision.gameObject.GetComponent<PlayerController>();
-
-            StartCoroutine(IncreaseJumpForce(player));
-
-            GetComponent<SpriteRenderer>().enabled = false;
-        }
-    }
-
-    IEnumerator IncreaseJumpForce(PlayerController player)
-    {
-        Debug.Log("Start");
-
-        player.JumpForce += _jumpForceIncreasing;
-
-        yield return new WaitForSeconds(_duration);
-
-        Debug.Log("Stop");
-        player.JumpForce -= _jumpForceIncreasing;
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _player.IncreaseJumpForce(_addingJumpForce, _startTime + _duration);
 
         Destroy(gameObject);
     }

@@ -18,7 +18,11 @@ public class PlayerController : MonoBehaviour
     public float JumpForce
     {
         get { return _jumpForce; }
-        set { _jumpForce = value; }
+        set
+        {
+            if (value > 0)
+                _jumpForce = value;
+        }
     }
 
     [Header("Health")]
@@ -45,10 +49,6 @@ public class PlayerController : MonoBehaviour
     private float _cooldown;
     private bool _isShieldActive = false;
 
-    [Header("Inventory")]
-    [SerializeField] private InventoryUI _uiInventory;
-    private Inventory _inventory;
-
     [Header("Components")]
     private Animator _playerAnimator;
     private Rigidbody2D _playerRb;
@@ -65,9 +65,6 @@ public class PlayerController : MonoBehaviour
 
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
-
-        _inventory = new Inventory();
-        _uiInventory.SetInventory(_inventory);
     }
 
     private void Start()
@@ -133,6 +130,7 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateShield();
+        IncreaseJumpForce(_addingJumpForce, _endTime);
     }
 
     private void UseShield()
@@ -183,6 +181,30 @@ public class PlayerController : MonoBehaviour
 
         _playerRb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
+
+    #region IncreaseJumpForce
+    private bool _isFirstIteration = true;
+    private float _addingJumpForce;
+    private float _endTime;
+
+    public void IncreaseJumpForce(float addingJumpForce, float endTime)
+    {
+        if (_isFirstIteration)
+        {
+            _addingJumpForce = addingJumpForce;
+            _endTime = endTime;
+            _isFirstIteration = false;
+
+            JumpForce += _addingJumpForce;
+        }
+
+        if (Time.time >= _endTime)
+        {
+            JumpForce -= _addingJumpForce;
+            _isFirstIteration = true;
+        }
+    }
+    #endregion
 
     #region attack
 
@@ -254,6 +276,12 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         _playerAnimator.SetBool("IsDead", true);
-        //SceneManager.LoadScene(0);
+
+        //Invoke("RestartScene", 5);
+    }
+
+    private void RestartScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }
