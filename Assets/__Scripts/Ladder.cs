@@ -24,7 +24,7 @@ public class Ladder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _playerRb.gravityScale = 1;
         _playerRb.isKinematic = false;
+        _playerRb.gravityScale = 1;
     }
 }

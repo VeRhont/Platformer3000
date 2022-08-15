@@ -14,10 +14,7 @@ public class Enemy : MonoBehaviour
         _enemyRb = GetComponent<Rigidbody2D>();
 
         _enemyAnimator = GetComponentInChildren<Animator>();
-    }
 
-    private void Start()
-    {
         _health = _maxHealth;
     }
 
