@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    [Header("Set in Inspector: Slime")]
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
@@ -14,10 +15,23 @@ public class Slime : Enemy
 
     private float _direction;
     private GameObject _player;
+    private ParticleSystem _deathParticles;
+
+    private void Start()
+    {
+        _deathParticles = GameObject.FindGameObjectWithTag("SlimeParticles").GetComponent<ParticleSystem>();
+    }
 
     private void FixedUpdate()
     {
         MoveToPlayer();
+    }
+
+    public override void Die()
+    {
+        _deathParticles.transform.position = gameObject.transform.position;
+        _deathParticles.Play();
+        base.Die();
     }
 
     private void MoveToPlayer()

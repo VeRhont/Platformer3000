@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf082ac3fa1611947a78d18e5f0034bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 60
+  _maxHealth: 35
   _startTime: 1
   _timeBetweenAttack: 5
   _projectilesPrefabs:

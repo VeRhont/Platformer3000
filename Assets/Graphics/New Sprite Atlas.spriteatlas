@@ -47,6 +47,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 4c6cdc2476f272a4bac1787dd2c86416, type: 3}
     - {fileID: 2800000, guid: 767b6be714b70464a9a9fa330eac69f9, type: 3}
     - {fileID: 2800000, guid: 6fb8c1d74d264db4dafa2d8fc2767ba7, type: 3}
+    - {fileID: 2800000, guid: e3906d38796f7f54994e9da00127ba79, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -161,6 +162,11 @@ SpriteAtlas:
   - {fileID: -641798347, guid: 767b6be714b70464a9a9fa330eac69f9, type: 3}
   - {fileID: -1088944850, guid: 767b6be714b70464a9a9fa330eac69f9, type: 3}
   - {fileID: -785772756, guid: 767b6be714b70464a9a9fa330eac69f9, type: 3}
+  - {fileID: 1396064244, guid: e3906d38796f7f54994e9da00127ba79, type: 3}
+  - {fileID: 142771345, guid: e3906d38796f7f54994e9da00127ba79, type: 3}
+  - {fileID: 956966079, guid: e3906d38796f7f54994e9da00127ba79, type: 3}
+  - {fileID: -1378977550, guid: e3906d38796f7f54994e9da00127ba79, type: 3}
+  - {fileID: -567084234, guid: e3906d38796f7f54994e9da00127ba79, type: 3}
   m_PackedSpriteNamesToIndex:
   - Platformer3000_29
   - Platformer3000_28
@@ -271,6 +277,11 @@ SpriteAtlas:
   - Platformer3000 1_5
   - Platformer3000 1_8
   - Platformer3000 1_9
+  - Enviroment_1
+  - Enviroment_0
+  - Enviroment_3
+  - Enviroment_2
+  - Enviroment_4
   m_RenderDataMap: {}
   m_Tag: New Sprite Atlas
   m_IsVariant: 0

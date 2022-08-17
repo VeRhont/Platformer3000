@@ -49,6 +49,12 @@ public class PlayerController : MonoBehaviour
     private float _cooldown;
     private bool _isShieldActive = false;
 
+    [Header("Potions")]
+    [SerializeField] private GameObject _useJumpPotionImage;
+    private bool _isFirstIteration = true;
+    private float _addingJumpForce;
+    private float _endTime;
+
     [Header("Components")]
     private Animator _playerAnimator;
     private Rigidbody2D _playerRb;
@@ -130,7 +136,10 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateShield();
-        IncreaseJumpForce(_addingJumpForce, _endTime);
+        if (_isFirstIteration == false)
+        {
+            IncreaseJumpForce(_addingJumpForce, _endTime);
+        }
     }
 
     private void UseShield()
@@ -183,9 +192,6 @@ public class PlayerController : MonoBehaviour
     }
 
     #region IncreaseJumpForce
-    private bool _isFirstIteration = true;
-    private float _addingJumpForce;
-    private float _endTime;
 
     public void IncreaseJumpForce(float addingJumpForce, float endTime)
     {
@@ -196,12 +202,19 @@ public class PlayerController : MonoBehaviour
             _isFirstIteration = false;
 
             JumpForce += _addingJumpForce;
+
+            _useJumpPotionImage.gameObject.SetActive(true);
         }
+
+        var image = _useJumpPotionImage.transform.FindChild("PotionActive").GetComponent<Image>();
+        image.fillAmount = (endTime - Time.time) / 5;
 
         if (Time.time >= _endTime)
         {
             JumpForce -= _addingJumpForce;
             _isFirstIteration = true;
+
+            _useJumpPotionImage.gameObject.SetActive(false);
         }
     }
     #endregion

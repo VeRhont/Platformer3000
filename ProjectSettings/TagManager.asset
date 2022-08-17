@@ -9,6 +9,9 @@ TagManager:
   - Skeleton
   - ShootingPlant
   - PotionActive
+  - Projectile
+  - SlimeParticles
+  - LockedChest
   layers:
   - Default
   - TransparentFX

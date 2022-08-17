@@ -272,7 +272,7 @@ MonoBehaviour:
   _maxHealth: 50
   _jumpForce: 2.1
   _speed: 1.2
-  _damage: 10
+  _damage: 15
   _attackDistance: 0.5
   _timeToNextAttack: 1
   _ground:

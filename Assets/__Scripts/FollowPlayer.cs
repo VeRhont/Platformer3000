@@ -4,13 +4,14 @@ public class FollowPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private Vector3 _offset;
-    [SerializeField] private float _;
 
     [Header("Camera")]
     [SerializeField] private float _changeVelocity;
     [SerializeField] private float _standartSize;
     [SerializeField] private float _maxSize;
     [SerializeField] private float _deltaSize = 0.001f;
+    [SerializeField] private float _normalYOffset;
+    [SerializeField] private float _cameraMoveSpeed = 5;
 
     private Camera _camera;
     private Rigidbody2D _playerRb;
@@ -22,6 +23,7 @@ public class FollowPlayer : MonoBehaviour
         _playerRb = _player.GetComponent<Rigidbody2D>();
 
         _currentSize = _maxSize;
+        _normalYOffset = _offset.y;
     }
 
     private void Update()
@@ -30,13 +32,13 @@ public class FollowPlayer : MonoBehaviour
 
         if (_playerRb.isKinematic == false)
         {
-            if (verticalInput > 0)
+            if (verticalInput < 0)
             {
-                _offset.y += verticalInput * Time.deltaTime;
+                _offset.y += verticalInput * _cameraMoveSpeed * Time.deltaTime;
             }
-            else if (verticalInput < 0)
+            else
             {
-                _offset.y += verticalInput * Time.deltaTime;
+                _offset.y = Mathf.Min(_normalYOffset, _offset.y + 0.05f);
             }
         } 
     }

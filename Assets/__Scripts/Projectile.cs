@@ -18,13 +18,11 @@ public class Projectile : MonoBehaviour
         transform.position += transform.right * _speed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(_damage);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(_damage);
         }
-
-        Destroy(gameObject);
     }
 }

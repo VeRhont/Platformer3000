@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log(name + " is dead");
         Destroy(gameObject);
     }
 
