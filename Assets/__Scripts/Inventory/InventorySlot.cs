@@ -31,4 +31,9 @@ public class InventorySlot : MonoBehaviour
             catch { }
         }
     }
+
+    public void ClearSlot()
+    {
+        GameObject.Destroy(transform.GetChild(2));
+    }
 }

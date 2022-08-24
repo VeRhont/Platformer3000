@@ -17,8 +17,10 @@ public class Slime : Enemy
     private GameObject _player;
     private ParticleSystem _deathParticles;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _deathParticles = GameObject.FindGameObjectWithTag("SlimeParticles").GetComponent<ParticleSystem>();
     }
 

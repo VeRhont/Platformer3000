@@ -1,10 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     static public PlayerController Instance;
+
+    public float Health
+    {
+        get { return _health; }
+        set
+        {
+            if (value >= 0 && value <= _maxHealth)
+                _health = value;
+        }
+    }
+    public Vector3 Position
+    {
+        get { return transform.position; }
+        set { transform.position = value; }
+    }
 
     [Header("Player Stats")]
     [SerializeField] private float _speed;
@@ -206,7 +220,7 @@ public class PlayerController : MonoBehaviour
             _useJumpPotionImage.gameObject.SetActive(true);
         }
 
-        var image = _useJumpPotionImage.transform.FindChild("PotionActive").GetComponent<Image>();
+        var image = _useJumpPotionImage.transform.Find("PotionActive").GetComponent<Image>();
         image.fillAmount = (endTime - Time.time) / 5;
 
         if (Time.time >= _endTime)
@@ -260,7 +274,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    private void UpdateHealth()
+    public void UpdateHealth()
     {
         if (_health == 0)
             Die();
@@ -290,11 +304,18 @@ public class PlayerController : MonoBehaviour
     {
         _playerAnimator.SetBool("IsDead", true);
 
-        //Invoke("RestartScene", 5);
+        Invoke("RestartScene", 1.5f);
     }
+
+    private PlayerDataSaveLoad _saveLoadSystem;
 
     private void RestartScene()
     {
-        SceneManager.LoadScene(1);
+        if (_saveLoadSystem == null)
+        {
+            _saveLoadSystem = GameObject.Find("_GameManager").GetComponent<PlayerDataSaveLoad>();
+        }
+        _playerAnimator.SetBool("IsDead", false);
+        _saveLoadSystem.LoadPlayer();
     }
 }

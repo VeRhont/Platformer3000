@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 736130630787772405}
   - component: {fileID: 3139094005841112081}
-  - component: {fileID: 1662916104309505492}
   - component: {fileID: 4935745411976475174}
+  - component: {fileID: -8648707103818325583}
   m_Layer: 0
   m_Name: Knife_green
   m_TagString: Untagged
@@ -86,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1662916104309505492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711012601488732782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2681ad0394b4274994217a5ac02e966, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 15
-  _lifeTime: 2.5
-  _damage: 15
 --- !u!61 &4935745411976475174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.1875}
   m_EdgeRadius: 0
+--- !u!114 &-8648707103818325583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711012601488732782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2681ad0394b4274994217a5ac02e966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 20
+  _lifeTime: 5
+  _damage: 10

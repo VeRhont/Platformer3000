@@ -8,8 +8,10 @@ public class ShootingPlant : Enemy
     [SerializeField] private GameObject[] _projectilesPrefabs;
     [SerializeField] private Transform[] _shootingPositions;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         InvokeRepeating("Shoot", _startTime, _timeBetweenAttack);
     }
 

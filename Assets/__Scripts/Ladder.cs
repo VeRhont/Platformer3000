@@ -6,13 +6,17 @@ public class Ladder : MonoBehaviour
 
     private Rigidbody2D _playerRb;
 
+    private void Start()
+    {
+        _playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {       
             if (Input.GetAxis("Vertical") != 0)
             {
-                _playerRb = other.GetComponent<Rigidbody2D>();
                 _playerRb.gravityScale = 0;
                 _playerRb.isKinematic = true;
 

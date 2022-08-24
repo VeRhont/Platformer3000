@@ -6,10 +6,20 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _lifeTime;
 
+    private ParticleSystem _collisionParticles;
+
+    private void Start()
+    {
+        _collisionParticles = GameObject.FindGameObjectWithTag("ProjectileParticles").GetComponent<ParticleSystem>();
+    }
+
     private void Update()
     {
         if (_lifeTime <= 0)
         {
+            _collisionParticles.transform.position = gameObject.transform.position;
+            _collisionParticles.Play();
+
             Destroy(gameObject);
         }
 
@@ -23,6 +33,11 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerController>().TakeDamage(_damage);
+
+            _collisionParticles.transform.position = gameObject.transform.position;
+            _collisionParticles.Play();
+
+            Destroy(gameObject);
         }
     }
 }

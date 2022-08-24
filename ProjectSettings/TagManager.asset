@@ -12,6 +12,10 @@ TagManager:
   - Projectile
   - SlimeParticles
   - LockedChest
+  - JumpPotionParticles
+  - HealPotionParticles
+  - InventoryItems
+  - ProjectileParticles
   layers:
   - Default
   - TransparentFX

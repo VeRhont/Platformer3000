@@ -60,8 +60,8 @@ public class Skeleton : Enemy
 
         Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPosition.position, _attackRange, _playerLayer);
 
-        hitPlayer.GetComponent<PlayerController>().TakeDamage(_attackDamage);
-
+        if (hitPlayer != null)
+            hitPlayer.GetComponent<PlayerController>().TakeDamage(_attackDamage);
     }
 
     private void OnDrawGizmosSelected()
