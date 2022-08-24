@@ -16,6 +16,7 @@ TagManager:
   - HealPotionParticles
   - InventoryItems
   - ProjectileParticles
+  - GameManager
   layers:
   - Default
   - TransparentFX

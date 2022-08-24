@@ -3,6 +3,17 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public float Health
+    {
+        get { return _health; }
+        set { _health = value; }
+    }
+    public float MaxHealth
+    {
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
+    }
+
     [Header("Enemy's stats")]
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private float _maxHealth;

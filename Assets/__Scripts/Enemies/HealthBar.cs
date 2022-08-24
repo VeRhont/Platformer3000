@@ -17,6 +17,6 @@ public class HealthBar : MonoBehaviour
     {
         _healthBar.gameObject.SetActive(health < MaxHealth);
         _healthBar.value = health;
-        _healthBar.maxValue = health;
+        _healthBar.maxValue = MaxHealth;
     }
 }

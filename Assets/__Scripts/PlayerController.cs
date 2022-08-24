@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     static public PlayerController Instance;
+    public bool IsGameActive = true;
 
     public float Health
     {
