@@ -34,7 +34,7 @@ public static class SaveSystem
         return null;
     }
 
-    public static void SaveEnemies(Enemy[] enemies)
+    public static void SaveEnemies(GameObject[] enemies)
     {
         var formatter = new BinaryFormatter();
         var path = Application.persistentDataPath + "/enemy.data";

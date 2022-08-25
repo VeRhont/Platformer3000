@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class EnemyData : MonoBehaviour
+public class EnemyData
 {
     public float[] Healths;
     public float[] MaxHealths;
@@ -9,12 +9,13 @@ public class EnemyData : MonoBehaviour
     public float[] PositionsY;
     public float[] PositionsZ;
 
-    public EnemyData(Enemy[] enemies)
+    public EnemyData(GameObject[] enemies)
     {
         for (int i = 0; i < enemies.Length; i++)
         {
-            Healths[i] = enemies[i].Health;
-            MaxHealths[i] = enemies[i].MaxHealth;
+            var enemy = enemies[i].GetComponent<Enemy>();
+            Healths[i] = enemy.Health;
+            MaxHealths[i] = enemy.MaxHealth;
 
             var position = enemies[i].transform.position;
             PositionsX[i] = position.x;

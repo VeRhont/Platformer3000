@@ -8,13 +8,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private GameObject _activeGameUI;
 
-    private GameManager _gameManager;
-
-    private void Start()
-    {
-        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -50,7 +43,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        _gameManager.SaveScene();
         SceneManager.LoadScene("Menu");
     }
 

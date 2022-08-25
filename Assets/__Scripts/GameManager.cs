@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private Enemy[] _enemies;
+    private GameObject[] _enemies;
 
     public void ResumeGame()
     {
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void SaveEnemies()
     {
-        _enemies = GameObject.FindObjectsOfType<Enemy>();
+        _enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         SaveSystem.SaveEnemies(_enemies);
     }
@@ -32,5 +32,10 @@ public class GameManager : MonoBehaviour
     private void LoadEnemies()
     {
         var data = SaveSystem.LoadEnemies();
+
+        for (int i = 0; i < data.Healths.Length; i++)
+        {
+            Debug.Log($"{data.Healths[i]}, {data.MaxHealths[i]}, {data.PositionsX[i]}, {data.PositionsY[i]}, {data.PositionsZ[i]}");
+        }
     }
 }
