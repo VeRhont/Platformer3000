@@ -2,8 +2,22 @@ using UnityEngine;
 
 public class PlayerDataSaveLoad : MonoBehaviour
 {
+    public static PlayerDataSaveLoad S;
+
     private PlayerController _player;
     private Inventory _playerInventory;
+
+    private void Awake()
+    {
+        if (S == null)
+        {
+            S = this;
+        }
+        else
+        {
+            Debug.LogError("Error: PlayerDataSaveLoad");
+        }
+    }
 
     private void Start()
     {

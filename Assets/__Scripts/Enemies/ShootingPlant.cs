@@ -19,6 +19,7 @@ public class ShootingPlant : Enemy
     {
         _enemyAnimator.SetBool("IsDead", true);
         Destroy(gameObject, 1);
+        Destroy(this);
     }
 
     private void Shoot()

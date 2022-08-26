@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     }
 
     [Header("Enemy's stats")]
-    [SerializeField] private HealthBar _healthBar;
+    [SerializeField] protected HealthBar _healthBar;
     [SerializeField] private float _maxHealth;
 
     private float _health;
@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
+        _healthBar.enabled = false;
         Destroy(gameObject);
     }
 }

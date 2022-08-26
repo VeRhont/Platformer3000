@@ -73,9 +73,12 @@ public class Skeleton : Enemy
 
     public override void Die()
     {
+        _healthBar.enabled = false;
+
         _enemyAnimator.SetBool("IsDead", true);
 
         Destroy(gameObject, 1.5f);
+        Destroy(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

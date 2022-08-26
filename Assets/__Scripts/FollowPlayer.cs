@@ -19,7 +19,7 @@ public class FollowPlayer : MonoBehaviour
 
     private void Awake()
     {
-        _camera = GetComponent<Camera>();
+        _camera = Camera.main;
         _playerRb = _player.GetComponent<Rigidbody2D>();
 
         _currentSize = _maxSize;
@@ -32,7 +32,7 @@ public class FollowPlayer : MonoBehaviour
 
         if (_playerRb.isKinematic == false)
         {
-            if (verticalInput < 0)
+            if (verticalInput < 0 && _normalYOffset - _offset.y < 3)
             {
                 _offset.y += verticalInput * _cameraMoveSpeed * Time.deltaTime;
             }
@@ -40,7 +40,7 @@ public class FollowPlayer : MonoBehaviour
             {
                 _offset.y = Mathf.Min(_normalYOffset, _offset.y + 0.05f);
             }
-        } 
+        }
     }
 
     private void LateUpdate()
