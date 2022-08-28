@@ -77,6 +77,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ContactFilter2D _ground;
     private bool IsOnGround => _playerRb.IsTouching(_ground);
 
+    [Header("Particles")]
+    private ParticleSystem _jumpParticles;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource _jumpSound;
+    [SerializeField] private AudioSource _damageSound;
+    [SerializeField] private AudioSource _runSound;
+    [SerializeField] private AudioSource _attackSound;
+
     private void Awake()
     {
         if (Instance == null)
@@ -94,6 +103,8 @@ public class PlayerController : MonoBehaviour
         _cooldown = _maxCooldown;
 
         UpdateHealth();
+
+        _jumpParticles = GameObject.FindGameObjectWithTag("JumpParticles").GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -113,7 +124,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             if (_playerRb.velocity.y > 0)
-            {
+            {                
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, _playerRb.velocity.y * _cutJumpHeight);
             }
         }
@@ -122,6 +133,10 @@ public class PlayerController : MonoBehaviour
         {
             _jumpPressedRemember = 0;
             _jumpGroundedRemember = 0;
+
+            _jumpParticles.transform.position = transform.position + new Vector3(0, -1, 0);
+            _jumpParticles.Play();
+
             Jump();
         }
 
@@ -129,6 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                _attackSound.Play();
                 Attack();
                 _nextAttackTime = Time.time + 1f / _attackRate;
             }
@@ -141,9 +157,17 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetButton("Horizontal"))
+        {
+            if (IsOnGround) _runSound.UnPause();
+            else _runSound.Pause();
+
             Run();
+        }
         else
+        {
+            _runSound.Pause();
             _playerAnimator.SetBool("IsMoving", false);
+        }
 
         if (Input.GetKeyDown(KeyCode.Q) && _cooldown >= _maxCooldown)
         {
@@ -201,6 +225,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        _jumpSound.Play();
+
         _playerAnimator.SetTrigger("Jump");
 
         _playerRb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
@@ -287,6 +313,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_isShieldActive == false)
         {
+            _damageSound.Play();
+
             _playerAnimator.SetTrigger("Damage");
 
             _health = Mathf.Max(0, _health - damage);

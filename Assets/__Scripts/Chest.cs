@@ -8,6 +8,8 @@ public class Chest : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _hint;
     [SerializeField] private GameObject _openedChest;
 
+    [SerializeField] private AudioSource _openChestSound;
+
     private bool _isActive = false;
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -38,6 +40,7 @@ public class Chest : MonoBehaviour
 
     private void OpenChest()
     {
+        _openChestSound.Play();
         _openedChest.SetActive(true);
 
         foreach (var obj in _dropObjects)

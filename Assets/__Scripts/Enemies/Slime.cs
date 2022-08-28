@@ -15,7 +15,11 @@ public class Slime : Enemy
 
     private float _direction;
     private GameObject _player;
+
     private ParticleSystem _deathParticles;
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource _jumpSound;
 
     protected override void Start()
     {
@@ -53,6 +57,7 @@ public class Slime : Enemy
 
         if (IsOnGround)
         {
+            _jumpSound.Play();
             _enemyRb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
 

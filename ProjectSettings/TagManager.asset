@@ -17,6 +17,9 @@ TagManager:
   - InventoryItems
   - ProjectileParticles
   - GameManager
+  - JumpParticles
+  - RunParticles
+  - SlimeJumpParticles
   layers:
   - Default
   - TransparentFX
