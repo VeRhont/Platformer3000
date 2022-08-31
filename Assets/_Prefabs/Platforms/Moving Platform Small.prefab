@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7119451292385855112}
   - component: {fileID: 7119451292385855110}
   - component: {fileID: 7119451292385855113}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Moving Platform Small
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8347644185220387310}
   - component: {fileID: 8347644185220387311}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Platform_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}

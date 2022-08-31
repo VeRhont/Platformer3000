@@ -3,6 +3,7 @@ using UnityEngine;
 public class Skeleton : Enemy
 {
     [Header("Attack")]
+    [SerializeField] private float _speed;
     [SerializeField] private float _attackDamage;
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private float _timeBetweenAttack = 2f;
@@ -39,6 +40,7 @@ public class Skeleton : Enemy
     private void RunToPlayer()
     {
         _enemyAnimator.SetBool("IsMoving", true);
+
         if (_player.transform.position.x + _deltaX > transform.position.x)
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -48,10 +50,8 @@ public class Skeleton : Enemy
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        var deltaX =  _player.transform.position.x - transform.position.x;
-        var direction = new Vector3(deltaX, 0, 0);
-
-        _enemyRb.MovePosition(transform.position + direction * Time.deltaTime);
+        var horizontalDirection = transform.right * transform.localScale.x;
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + horizontalDirection, _speed * Time.deltaTime);
     }
 
     private void Attack()
@@ -73,12 +73,12 @@ public class Skeleton : Enemy
 
     public override void Die()
     {
-        _healthBar.enabled = false;
-
         _enemyAnimator.SetBool("IsDead", true);
 
         Destroy(gameObject, 1.5f);
         Destroy(this);
+
+        Destroy(_healthBar.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

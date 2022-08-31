@@ -722,6 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 5160624326001312098}
   _maxHealth: 100
+  _speed: 1
   _attackDamage: 25
   _attackRange: 0.7
   _timeBetweenAttack: 3

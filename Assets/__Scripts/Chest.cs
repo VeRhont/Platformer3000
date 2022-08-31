@@ -4,6 +4,8 @@ using TMPro;
 
 public class Chest : MonoBehaviour
 {
+    [SerializeField] private bool _isClosed;
+
     [SerializeField] private List<GameObject> _dropObjects;
     [SerializeField] private TextMeshProUGUI _hint;
     [SerializeField] private GameObject _openedChest;

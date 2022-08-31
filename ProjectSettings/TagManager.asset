@@ -20,6 +20,7 @@ TagManager:
   - JumpParticles
   - RunParticles
   - SlimeJumpParticles
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Enemy
   - Crate
   - Ground
-  - 
+  - Cliffs
   - 
   - 
   - 

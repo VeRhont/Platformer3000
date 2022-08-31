@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8220970871885394105}
   - component: {fileID: 819555774014724315}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Static Platform Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924767682562623445}
   - component: {fileID: 414892466945400604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Platformer3000 3_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}

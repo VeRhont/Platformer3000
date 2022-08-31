@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2995cef7a8051fc45a331e6ad3d11255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isClosed: 0
   _dropObjects:
   - {fileID: 6266493697748339779, guid: 3dfe83559b78d1f4c909b1a5158d855e, type: 3}
   _hint: {fileID: 0}
@@ -358,7 +359,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 9077a9f8db62f054fb69895891efa5b1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0

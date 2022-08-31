@@ -20,6 +20,7 @@ public class ShootingPlant : Enemy
         _enemyAnimator.SetBool("IsDead", true);
         Destroy(gameObject, 1);
         Destroy(this);
+        Destroy(_healthBar.gameObject);
     }
 
     private void Shoot()
