@@ -21,6 +21,8 @@ TagManager:
   - RunParticles
   - SlimeJumpParticles
   - Ground
+  - xp
+  - XpParticles
   layers:
   - Default
   - TransparentFX

@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected HealthBar _healthBar;
     [SerializeField] private float _maxHealth;
 
+    [SerializeField] private GameObject _xpPointPrefab;
+    [SerializeField] private int _xpCount = 1;
+
     private float _health;
 
     protected Rigidbody2D _enemyRb;
@@ -50,7 +53,13 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
+        for (int i = 0; i < _xpCount; i++)
+        {
+            var xp = Instantiate(_xpPointPrefab, transform.position, Quaternion.identity);
+            var direction = new Vector2(transform.position.x + Random.value, transform.position.y + Random.value);
+            xp.GetComponent<Rigidbody2D>().AddForce(direction);
+        }
+
         _healthBar.enabled = false;
-        Destroy(gameObject);
     }
 }

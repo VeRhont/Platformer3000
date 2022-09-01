@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Particles")]
     private ParticleSystem _jumpParticles;
+    private ParticleSystem _xpParticles;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource _jumpSound;
@@ -105,7 +107,36 @@ public class PlayerController : MonoBehaviour
         UpdateHealth();
 
         _jumpParticles = GameObject.FindGameObjectWithTag("JumpParticles").GetComponent<ParticleSystem>();
+        _xpParticles = GameObject.FindGameObjectWithTag("XpParticles").GetComponent<ParticleSystem>();
     }
+
+    #region xp
+
+    [SerializeField] private TextMeshProUGUI _xpCountText;
+    [SerializeField] private AudioSource _xpSound;
+    private int _xpCount = 0;
+    public int XpCount { get; set; }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("xp"))
+        {
+            _xpSound.Play();
+            _xpParticles.transform.position = collision.transform.position;
+            _xpParticles.Play();
+            Destroy(collision.gameObject);
+
+            _xpCount++;
+
+            UpdateXpCount();
+        }
+    }
+
+    private void UpdateXpCount()
+    {
+        _xpCountText.SetText($"XP: {_xpCount}");
+    }
+    #endregion
 
     private void Update()
     {

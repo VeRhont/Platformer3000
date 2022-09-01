@@ -35,9 +35,12 @@ public class Slime : Enemy
 
     public override void Die()
     {
+        base.Die();
+
         _deathParticles.transform.position = gameObject.transform.position;
         _deathParticles.Play();
-        base.Die();
+
+        Destroy(gameObject);
     }
 
     private void MoveToPlayer()

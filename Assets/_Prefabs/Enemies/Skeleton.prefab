@@ -722,6 +722,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 5160624326001312098}
   _maxHealth: 100
+  _xpPointPrefab: {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  _xpCount: 5
   _speed: 1
   _attackDamage: 25
   _attackRange: 0.7

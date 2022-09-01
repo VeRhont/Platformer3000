@@ -73,6 +73,8 @@ public class Skeleton : Enemy
 
     public override void Die()
     {
+        base.Die();
+
         _enemyAnimator.SetBool("IsDead", true);
 
         Destroy(gameObject, 1.5f);
