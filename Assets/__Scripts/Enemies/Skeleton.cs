@@ -13,12 +13,17 @@ public class Skeleton : Enemy
     [SerializeField] private float _attackDistance;
     [SerializeField] private float _deltaX = 0.5f;
 
+    [SerializeField] private AudioSource _walkSound;
+    [SerializeField] private AudioSource _deathSound;
+    [SerializeField] private AudioSource _attackSound;
+
     private GameObject _player;
 
     private void Update()
     {
         if (_player == null)
         {
+            _walkSound.Pause();
             _enemyAnimator.SetBool("IsMoving", false);
             return;
         }
@@ -39,9 +44,10 @@ public class Skeleton : Enemy
 
     private void RunToPlayer()
     {
+        _walkSound.UnPause();
         _enemyAnimator.SetBool("IsMoving", true);
 
-        if (_player.transform.position.x + _deltaX > transform.position.x)
+        if (_player.transform.position.x + _deltaX > transform.position.x )
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
@@ -56,6 +62,7 @@ public class Skeleton : Enemy
 
     private void Attack()
     {
+        _attackSound.Play();
         _enemyAnimator.SetTrigger("Attack");
 
         Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPosition.position, _attackRange, _playerLayer);
@@ -75,6 +82,7 @@ public class Skeleton : Enemy
     {
         base.Die();
 
+        _deathSound.Play();
         _enemyAnimator.SetBool("IsDead", true);
 
         Destroy(gameObject, 1.5f);

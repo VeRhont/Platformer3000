@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    private AudioSource _pickUpSound;
+
     private Inventory _inventory;
     public GameObject SlotButton;
 
     private void Start()
     {
         _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        _pickUpSound = GameObject.Find("PickUpSound").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,6 +22,8 @@ public class PickUp : MonoBehaviour
             {
                 if (_inventory.IsFull[i] == false)
                 {
+                    _pickUpSound.Play();
+
                     _inventory.IsFull[i] = true;
                     var removeButton = _inventory.Slots[i].transform.Find("RemoveButton").gameObject;
                     removeButton.SetActive(true);

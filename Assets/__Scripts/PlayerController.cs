@@ -175,7 +175,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                _attackSound.Play();
                 Attack();
                 _nextAttackTime = Time.time + 1f / _attackRate;
             }
@@ -316,6 +315,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
+        _attackSound.Play();
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPosition.position, _attackRange, _enemyLayers);
 
         foreach (var enemy in hitEnemies)

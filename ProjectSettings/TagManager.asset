@@ -23,6 +23,7 @@ TagManager:
   - Ground
   - xp
   - XpParticles
+  - KeyButton
   layers:
   - Default
   - TransparentFX

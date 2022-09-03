@@ -342,7 +342,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isClosed: 0
   _dropObjects:
-  - {fileID: 6266493697748339779, guid: 3dfe83559b78d1f4c909b1a5158d855e, type: 3}
+  - {fileID: 1730934087563602717, guid: d5c3cdb99e9ed5e47b770b29c1c0c825, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
   _hint: {fileID: 0}
   _openedChest: {fileID: 5401976606335695262}
   _openChestSound: {fileID: -8221652848321476135}

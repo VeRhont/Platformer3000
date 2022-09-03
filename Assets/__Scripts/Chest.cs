@@ -12,7 +12,13 @@ public class Chest : MonoBehaviour
 
     [SerializeField] private AudioSource _openChestSound;
 
+    private Transform _itemsParent;
     private bool _isActive = false;
+
+    private void Start()
+    {
+        _itemsParent = GameObject.Find("ItemsParent").transform;
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -29,7 +35,24 @@ public class Chest : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                OpenChest();
+                if (_isClosed == false)
+                {
+                    OpenChest();
+                }
+                else
+                {
+                    foreach (Transform inventorySlot in _itemsParent)
+                    {
+                        foreach (Transform e in inventorySlot)
+                        {                          
+                            if (e.CompareTag("KeyButton"))
+                            {
+                                OpenChest();
+                                Destroy(e.gameObject);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

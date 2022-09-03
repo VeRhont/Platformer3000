@@ -343,6 +343,13 @@ MonoBehaviour:
   _isClosed: 1
   _dropObjects:
   - {fileID: 6266493697748339779, guid: 3dfe83559b78d1f4c909b1a5158d855e, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
+  - {fileID: 4290308486453570116, guid: d350b54e7bf6ade47975868691f22bcb, type: 3}
   _hint: {fileID: 0}
   _openedChest: {fileID: 5500099058943573840}
   _openChestSound: {fileID: 2246478591424712648}
