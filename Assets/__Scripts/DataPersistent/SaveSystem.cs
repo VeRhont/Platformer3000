@@ -33,34 +33,4 @@ public static class SaveSystem
         Debug.Log("Error with SaveSystem.LoadPlayer");
         return null;
     }
-
-    public static void SaveEnemies(GameObject[] enemies)
-    {
-        var formatter = new BinaryFormatter();
-        var path = Application.persistentDataPath + "/enemy.data";
-        var stream = new FileStream(path, FileMode.Create);
-
-        var data = new EnemyData(enemies);
-
-        formatter.Serialize(stream, data);
-        stream.Close();
-    }
-
-    public static EnemyData LoadEnemies()
-    {
-        var path = Application.persistentDataPath + "/enemy.data";
-
-        if (File.Exists(path))
-        {
-            var formatter = new BinaryFormatter();
-            var stream = new FileStream(path, FileMode.Open);
-
-            EnemyData data = formatter.Deserialize(stream) as EnemyData;
-
-            stream.Close();
-            return data;
-        }
-        Debug.Log("Error with SaveSystem.LoadEnemies");
-        return null;
-    }
 }

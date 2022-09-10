@@ -11,7 +11,7 @@ public class Skeleton : Enemy
     [SerializeField] private Transform _attackPosition;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _attackDistance;
-    [SerializeField] private float _deltaX = 0.5f;
+    [SerializeField] private float _deltaX = 0.1f;
 
     [SerializeField] private AudioSource _walkSound;
     [SerializeField] private AudioSource _deathSound;
@@ -36,8 +36,10 @@ public class Skeleton : Enemy
                 _timeToNextAttack = _timeBetweenAttack;
             }
         }
-
-        RunToPlayer();
+        else
+        {
+            RunToPlayer();
+        }
 
         _timeToNextAttack -= Time.deltaTime;
     }

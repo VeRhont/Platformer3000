@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,6 +38,15 @@ public class PauseMenu : MonoBehaviour
         _pauseMenuUI.SetActive(false);
         IsGamePaused = false;
         Time.timeScale = 1f;
+    }
+
+    public void StartNewGame()
+    {
+        //var path = Application.persistentDataPath + "/player.data";
+
+        //File.Delete(path);
+
+        //SceneManager.LoadScene(1);
     }
 
     public void LoadMenu()

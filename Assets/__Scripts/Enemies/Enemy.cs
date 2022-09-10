@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D _enemyRb;
     protected Animator _enemyAnimator;
 
+    [SerializeField] private AudioSource _damageSound;
+
     private void Awake()
     {
         _enemyRb = GetComponent<Rigidbody2D>();
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        _damageSound.Play();
         _enemyAnimator.SetTrigger("TakeDamage");
 
         _health = Mathf.Max(0, _health - damage);

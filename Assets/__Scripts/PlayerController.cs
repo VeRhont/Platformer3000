@@ -1,6 +1,7 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpPressedRememberTime = 0.1f;
     [SerializeField] private float _jumpGroundedRememberTime = 0.1f;
     [SerializeField, Range(0, 1)] private float _cutJumpHeight;
+    private bool _isPlayerAlive = true;
+
     private float _jumpPressedRemember = 0f;
     private float _jumpGroundedRemember = 0f;
 
@@ -87,6 +90,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource _damageSound;
     [SerializeField] private AudioSource _runSound;
     [SerializeField] private AudioSource _attackSound;
+    [SerializeField] private AudioSource _throwKnifeSound;
+
+    private PlayerDataSaveLoad _saveLoadSystem;
 
     private void Awake()
     {
@@ -104,7 +110,15 @@ public class PlayerController : MonoBehaviour
         _health = _maxHealth;
         _cooldown = _maxCooldown;
 
+        if (_saveLoadSystem == null)
+        {
+            _saveLoadSystem = GameObject.Find("_GameManager").GetComponent<PlayerDataSaveLoad>();
+        }
+
+        _saveLoadSystem.LoadPlayer();
+
         UpdateHealth();
+        UpdateXpCount();
 
         _jumpParticles = GameObject.FindGameObjectWithTag("JumpParticles").GetComponent<ParticleSystem>();
         _xpParticles = GameObject.FindGameObjectWithTag("XpParticles").GetComponent<ParticleSystem>();
@@ -115,7 +129,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _xpCountText;
     [SerializeField] private AudioSource _xpSound;
     private int _xpCount = 0;
-    public int XpCount { get; set; }
+    public int XpCount
+    {
+        get { return _xpCount; }
+        set { _xpCount = value; }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -140,6 +158,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_isPlayerAlive == false) return;
+
         _jumpGroundedRemember -= Time.deltaTime;
         if (IsOnGround)
         {
@@ -299,6 +319,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnThrowKnife()
     {
+        _throwKnifeSound.Play();
+
         var index = Random.Range(0, _knifePrefabs.Length);
         var knife = Instantiate(_knifePrefabs[index], _throwKnifePosition.position, Quaternion.identity);
 
@@ -363,20 +385,17 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        _isPlayerAlive = false;
+
         _playerAnimator.SetBool("IsDead", true);
 
         Invoke("RestartScene", 1.5f);
     }
 
-    private PlayerDataSaveLoad _saveLoadSystem;
-
     private void RestartScene()
     {
-        if (_saveLoadSystem == null)
-        {
-            _saveLoadSystem = GameObject.Find("_GameManager").GetComponent<PlayerDataSaveLoad>();
-        }
         _playerAnimator.SetBool("IsDead", false);
-        _saveLoadSystem.LoadPlayer();
+
+        SceneManager.LoadScene("Level 1");
     }
 }
