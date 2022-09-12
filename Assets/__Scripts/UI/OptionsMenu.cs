@@ -8,6 +8,8 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private TMP_Dropdown _resolutionDropdown;
 
+    [SerializeField] private AudioSource _clickSound;
+
     private Resolution[] _resolutions;
 
     private void Start()
@@ -37,6 +39,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
+        _clickSound.Play();
         var resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
@@ -48,11 +51,18 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetQuality(int qualityIndex)
     {
+        _clickSound.Play();
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
+        _clickSound.Play();
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void PlayClickSound()
+    {
+        _clickSound.Play();
     }
 }

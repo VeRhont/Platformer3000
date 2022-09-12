@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private GameObject _activeGameUI;
 
+    [SerializeField] private AudioSource _clickSound;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -42,11 +44,11 @@ public class PauseMenu : MonoBehaviour
 
     public void StartNewGame()
     {
-        //var path = Application.persistentDataPath + "/player.data";
+        var path = Application.persistentDataPath + "/player.data";
 
-        //File.Delete(path);
+        File.Delete(path);
 
-        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 
     public void LoadMenu()
@@ -59,5 +61,10 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void PlayClickSound()
+    {
+        _clickSound.Play();
     }
 }

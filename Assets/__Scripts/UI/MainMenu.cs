@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private int _lastLevel = 1;
+    [SerializeField] private AudioSource _clickSound;
 
     public void ResumeGame()
     {
+        _clickSound.Play();
         SceneManager.LoadScene(_lastLevel);
     }
 
     public void StartNewGame()
     {
+        _clickSound.Play();
         var path = Application.persistentDataPath + "/player.data";
 
         File.Delete(path);
@@ -22,6 +25,12 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
+        _clickSound.Play();
         Application.Quit();
+    }
+
+    public void PlayClickSound()
+    {
+        _clickSound.Play(); 
     }
 }
