@@ -42,14 +42,14 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void StartNewGame()
-    {
-        var path = Application.persistentDataPath + "/player.data";
+    //public void StartNewGame()
+    //{
+    //    var path = Application.persistentDataPath + "/player.data";
 
-        File.Delete(path);
+    //    File.Delete(path);
 
-        SceneManager.LoadScene(1);
-    }
+    //    SceneManager.LoadScene(1);
+    //}
 
     public void LoadMenu()
     {
